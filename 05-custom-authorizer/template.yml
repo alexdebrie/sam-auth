@@ -1,0 +1,85 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  sam-auth
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  OrdersTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: "orderId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "orderId"
+          KeyType: "HASH"
+      BillingMode: "PAY_PER_REQUEST"
+  CreateOrderFunction:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      CodeUri: src/
+      Handler: createOrder.handler
+      Runtime: nodejs14.x
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:PutItem
+              Resource: !GetAtt OrdersTable.Arn
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref OrdersTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /orders
+            Method: POST
+  GetOrderFunction:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      CodeUri: src/
+      Handler: getOrder.handler
+      Runtime: nodejs14.x
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+              Resource: !GetAtt OrdersTable.Arn
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref OrdersTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /orders/{orderId}
+            Method: GET
+  AuthorizerFunction:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      CodeUri: src/
+      Handler: authorizer.handler
+      Runtime: nodejs14.x
+      Policies:
+        - SSMParameterReadPolicy:
+            ParameterName: OrderToken
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Auth:
+        DefaultAuthorizer: Authorizer
+        Authorizers:
+          Authorizer:
+            FunctionArn: !GetAtt AuthorizerFunction.Arn
+
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${Api}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

@@ -171,4 +171,4 @@ module.exports.handler = async (event, context) => {
 
 Notice that we set `AUTH_TOKEN` to null in our global scope. When invoking our function, we see if `AUTH_TOKEN` has a value. If not, we fetch from Parameter Store and set the `AUTH_TOKEN` variable to the returned value. On subsequent requests, the global `AUTH_TOKEN` variable will contain our value and will not require a subsequent call to Parameter Store.
 
-That concludes Step 4, where we saw how to manage true secrets in our serverless application. However, we still have auth logic mixed in with our function handler. If many functions use the same auth logic, this could be repetitive boilerplate. In [Step 5](./../5-custom-authorizer), we will see how to abstract auth logic into a separate function.
+That concludes Step 4, where we saw how to manage true secrets in our serverless application. However, we still have auth logic mixed in with our function handler. If many functions use the same auth logic, this could be repetitive boilerplate. In [Step 5](./../05-custom-authorizer), we will see how to abstract auth logic into a separate function.

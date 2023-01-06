@@ -170,4 +170,4 @@ You should see a result like the following:
 {"orderId":"772afa52699d3ff64645"}
 ```
 
-Success! You created an Order. Move on to [Step 2](/2-get-order) to see how to read your Order back.
+Success! You created an Order. Move on to [Step 2](/02-get-order) to see how to read your Order back.

@@ -120,4 +120,4 @@ Notice that we've included an `Authorization` header with our static token's val
 {"orderId":"84ccd402f23c08a2dd8a"}
 ```
 
-Success! We added some simple authorization. However, we don't like that our token value is hard-coded into our function and committed to our repo. Let's change in [Step 4](./../4-parameter-store) by using Parameter Store to store our secret.
+Success! We added some simple authorization. However, we don't like that our token value is hard-coded into our function and committed to our repo. Let's change in [Step 4](./../04-parameter-store) by using Parameter Store to store our secret.

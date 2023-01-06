@@ -33,8 +33,8 @@ This lab is comprised of five steps. Each step has instructions in a sub-directo
 
 The steps are:
 
-1. [Add the CreateOrder endpoint](./1-create-order)
-2. [Add the GetOrder endpoint](./2-get-order)
-3. [Add a simple authorization check](./3-authorization)
-4. [Use Parameter Store to hold secrets](./4-parameter-store)
-5. [Use a custom authorizer in API Gateway](./5-custom-authorizer)
+1. [Add the CreateOrder endpoint](./01-create-order)
+2. [Add the GetOrder endpoint](./02-get-order)
+3. [Add a simple authorization check](./03-authorization)
+4. [Use Parameter Store to hold secrets](./04-parameter-store)
+5. [Use a custom authorizer in API Gateway](./05-custom-authorizer)

@@ -101,4 +101,4 @@ curl -X GET <yourEndpoint>/orders/<orderId>
 
 Be sure to replace `<yourEndpoint>` with your endpoint, and replace `<orderId>` with an orderId that was returned from your Create Order function.
 
-Success! You read your Order back. Move on to [Step 3](./../3-authorization) to see how to handle errors in your Lambda functions that are connected to API Gateway.
+Success! You read your Order back. Move on to [Step 3](./../03-authorization) to see how to handle errors in your Lambda functions that are connected to API Gateway.

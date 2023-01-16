@@ -68,6 +68,7 @@ const SSM = new AWS.SSM();
 module.exports.handler = async (event, context) => {
   const parameterResponse = await SSM.getParameter({
     Name: "OrderToken",
+    WithDecryption: true
   }).promise();
   const AUTH_TOKEN = parameterResponse.Parameter.Value;
 

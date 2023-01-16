@@ -26,10 +26,10 @@ Resources:
     Properties:
       AttributeDefinitions:
         - AttributeName: "orderId"
-        AttributeType: "S"
+          AttributeType: "S"
       KeySchema:
         - AttributeName: "orderId"
-        KeyType: "HASH"
+          KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
 ```
 
